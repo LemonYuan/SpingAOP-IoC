@@ -1,0 +1,7 @@
+com\hand\springIOC\HelloLanguages\Chinese.class
+com\hand\springIOC\AOP\Logging.class
+com\hand\springIOC\HelloLanguages\IHelloLanguages.class
+com\hand\springIOC\App.class
+com\hand\springIOC\EventHandler\PostAfterInitEvent.class
+com\hand\springIOC\HelloLanguages\English.class
+com\hand\springIOC\entity\Person.class

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:aop="http://www.springframework.org/schema/aop" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+<bean id="chinese"  class="com.hand.springIOC.HelloLanguages.Chinese"></bean>
+<bean id="english"  class="com.hand.springIOC.HelloLanguages.English"></bean>
+<bean id="person"   class="com.hand.springIOC.entity.Person">
+<property name="name" value="lemon"/> 
+<property name="age" value="11"/> 
+<property name="chinese" ref="chinese"/> 
+</bean>
+<bean id="student"   class="com.hand.springIOC.entity.Student">
+<property name="name" value="jason"/> 
+<property name="teacher" value="qiu"/> 
+<property name="score" value="86"/> 
+</bean>
+<bean id="logging"  class="com.hand.springIOC.AOP.Logging"></bean>
+ <aop:config>
+   <aop:aspect id="log" ref="logging">
+   <aop:pointcut id="selectAll" expression="execution(* com.hand.springIOC.entity.*.*(..))"/>
+   <aop:pointcut id="studentPointcut" expression="execution(* com.hand.springIOC.entity.Student.*(..))"/>
+   <aop:before pointcut-ref="studentPointcut" method="special"/>
+   <aop:before pointcut-ref="selectAll" method="doBefore"/>
+   <aop:after pointcut-ref="selectAll" method="doAfter"/>
+   <aop:after-returning pointcut-ref="selectAll" returning="retVal" method="doAfterReturning"/>
+   <aop:after-throwing pointcut-ref="selectAll" throwing="ex" method="doAfterException"/>
+   </aop:aspect>
+
+</aop:config> 
+</beans>
